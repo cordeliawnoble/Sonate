@@ -4,7 +4,7 @@
 // L'application fonctionne en mode brouillon même sans endpoint,
 // mais "Déposer" ne pourra pas écrire dans Google Sheets.
 window.SONATE_CONFIG = {
-  endpoint: "",
+  endpoint: "https://script.google.com/macros/s/AKfycbyHp3AdQP3-0nqabPLQZLSOmrU9TR9XbdHbOiIGrmslHeM5kkQ-awQnkwE5rPq5ekCa_A/exec",
 
   defaults: {
     language: "fr-FR",
