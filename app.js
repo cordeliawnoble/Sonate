@@ -4,8 +4,13 @@
   let category = "Histoire";
   let recognition = null;
   let listening = false;
-  let finalBeforeListening = "";
   let startedAt = null;
+
+  // Dictée : on garde le texte qui existait AVANT la session séparément
+  // des résultats fournis par le moteur vocal. On reconstruit la session
+  // au lieu d'ajouter chaque événement, ce qui évite les doublons Chrome.
+  let speechBaseText = "";
+  let speechFinalText = "";
 
   const $ = (s) => document.querySelector(s);
   const transcript = $("#transcript");
@@ -128,6 +133,8 @@
     startedAt = null;
     transcript.value = "";
     interim.textContent = "";
+    speechBaseText = "";
+    speechFinalText = "";
     draftBadge.classList.add("hidden");
     if (resetUI) {
       category = "Histoire";
@@ -174,7 +181,11 @@
     recognition.onstart = () => {
       listening = true;
       startedAt = startedAt || new Date().toISOString();
-      finalBeforeListening = transcript.value.trim();
+
+      // Snapshot immuable du texte déjà présent avant cette session de dictée.
+      speechBaseText = transcript.value.trim();
+      speechFinalText = "";
+
       micBtn.classList.add("listening");
       micBtn.setAttribute("aria-pressed", "true");
       micLabel.textContent = "Arrêter";
@@ -182,20 +193,33 @@
       supportStatus.textContent = "Tes mots apparaissent en direct. Tu peux corriger ensuite.";
     };
 
-    recognition.onresult = event => {
+    recognition.onresult = (event) => {
       let finalText = "";
       let interimText = "";
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        const piece = event.results[i][0].transcript;
-        if (event.results[i].isFinal) finalText += piece + " ";
-        else interimText += piece;
+
+      // Important : on reconstruit TOUS les résultats de la session courante.
+      // On n'utilise jamais textarea.value += ... ici.
+      for (let i = 0; i < event.results.length; i++) {
+        const piece = (event.results[i][0].transcript || "").trim();
+        if (!piece) continue;
+
+        if (event.results[i].isFinal) {
+          finalText += (finalText ? " " : "") + piece;
+        } else {
+          interimText += (interimText ? " " : "") + piece;
+        }
       }
-      if (finalText) {
-        const separator = transcript.value.trim() ? " " : "";
-        transcript.value = (transcript.value.trim() + separator + finalText.trim()).trim();
-        persistDraft();
-      }
+
+      speechFinalText = finalText.trim();
+
+      const parts = [speechBaseText, speechFinalText].filter(Boolean);
+      transcript.value = parts.join(parts.length > 1 ? " " : "");
+
+      // L'intermédiaire reste visuel uniquement, il n'est jamais injecté
+      // définitivement dans la textarea.
       interim.textContent = interimText ? "… " + interimText : "";
+
+      persistDraft();
     };
 
     recognition.onerror = event => {
@@ -212,6 +236,10 @@
       micLabel.textContent = "Dicter";
       listenStatus.textContent = "Micro en veille";
       interim.textContent = "";
+
+      // On considère le résultat visible comme nouveau socle pour la prochaine session.
+      speechBaseText = transcript.value.trim();
+      speechFinalText = "";
       persistDraft();
     };
 
@@ -233,7 +261,7 @@
     const metadata = {
       personnage: f.personnage || "",
       capturedStartedAt: startedAt || now.toISOString(),
-      appVersion: "1.0.0"
+      appVersion: "1.1.0"
     };
 
     return {
