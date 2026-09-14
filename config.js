@@ -1,0 +1,1 @@
+window.SONATE_CONFIG={endpoint:"",language:"fr-FR"};
