@@ -1,6 +1,6 @@
 window.SONATE_CONFIG = {
   // URL /exec de ton déploiement Apps Script.
-  endpoint: "",
+  endpoint: "https://script.google.com/macros/s/AKfycbyHp3AdQP3-0nqabPLQZLSOmrU9TR9XbdHbOiIGrmslHeM5kkQ-awQnkwE5rPq5ekCa_A/exec",
 
   defaults: {
     language: "fr-FR",
