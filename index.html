@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#433a58">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<title>Sonate</title>
+</head>
+<body>
+<main class="shell">
+  <header class="brand">
+    <div class="mark">♫</div>
+    <div class="brand-copy">
+      <p class="eyebrow">Eternal Sonata</p>
+      <h1>Sonate</h1>
+      <p class="tagline">Dépose une note avant qu’elle ne s’envole.</p>
+      <div class="header-actions">
+        <span id="dbBadge" class="badge warn">● Base non configurée</span>
+        <a class="admin-link" href="backoffice.html">⚙️ Back-office</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="card">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Capture</p>
+        <h2>Qu’est-ce qui vient de passer dans ta tête ?</h2>
+      </div>
+      <span id="draftBadge" class="mini-badge hidden">Brouillon restauré</span>
+    </div>
+
+    <div class="mic-row">
+      <button id="micBtn" class="mic-btn" type="button">🎙️ <span id="micLabel">Dicter</span></button>
+      <div class="mic-info">
+        <strong id="micStatus">Micro en veille</strong>
+        <small id="micHelp">La dictée apparaîtra ici en direct.</small>
+      </div>
+    </div>
+
+    <textarea id="note" placeholder="Dicte ou écris ton idée ici…"></textarea>
+    <div id="interim" class="interim"></div>
+
+    <div class="note-tools">
+      <span id="stats">0 mot · 0 caractère</span>
+      <button id="clearBtn" class="link danger" type="button">Effacer</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="eyebrow">Contexte rapide</p>
+    <h2>À quoi appartient cette note ?</h2>
+
+    <div class="categories">
+      <button class="category active" data-cat="Histoire" type="button">📖<span>Histoire</span></button>
+      <button class="category" data-cat="Podcast" type="button">🎙️<span>Podcast</span></button>
+      <button class="category" data-cat="Prompt personnage" type="button">💬<span>Prompt perso</span></button>
+      <button class="category" data-cat="Site / outil" type="button">🛠️<span>Site / outil</span></button>
+      <button class="category" data-cat="Autre" type="button">✨<span>Autre</span></button>
+    </div>
+
+    <div id="fields" class="fields"></div>
+  </section>
+
+  <button id="depositBtn" class="deposit" type="button">
+    <span>♫</span>
+    <span><b>Déposer</b><small>dans Sonate</small></span>
+  </button>
+
+  <p id="status" class="status"></p>
+
+  <footer>
+    <span>Sonate · Eternal Sonata</span>
+    <span>v3</span>
+  </footer>
+</main>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
