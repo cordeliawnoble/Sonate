@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#433a58" />
+  <meta name="description" content="Sonate — capture mobile d'idées pour Eternal Sonata." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Sonate</title>
+</head>
+<body>
+  <main class="shell">
+    <header class="brand">
+      <div class="brand-mark" aria-hidden="true">♫</div>
+      <div>
+        <p class="eyebrow">Eternal Sonata</p>
+        <h1>Sonate</h1>
+        <p class="tagline">Dépose une note avant qu’elle ne s’envole.</p><span id="runtimeStatus" class="runtime-status">Chargement…</span>
+      </div>
+    </header>
+
+    <section class="card capture-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Capture</p>
+          <h2>Qu’est-ce qui vient de passer dans ta tête ?</h2>
+        </div>
+        <span id="draftBadge" class="badge hidden">Brouillon restauré</span>
+      </div>
+
+      <div class="mic-row">
+        <button id="micBtn" class="mic-button" type="button" aria-pressed="false">
+          <span class="mic-icon">🎙️</span>
+          <span id="micLabel">Dicter</span>
+        </button>
+        <div class="mic-status">
+          <strong id="listenStatus">Micro en veille</strong>
+          <span id="supportStatus">La dictée apparaîtra ici en direct.</span>
+        </div>
+      </div>
+
+      <label class="field-label" for="transcript">Ta note</label>
+      <div class="transcript-wrap">
+        <textarea id="transcript" rows="10" placeholder="Dicte ou écris ton idée ici…"></textarea>
+        <div id="interim" class="interim" aria-live="polite"></div>
+      </div>
+
+      <div class="transcript-tools">
+        <span id="stats">0 mot · 0 caractère</span>
+        <button id="clearBtn" class="text-button danger" type="button">Effacer</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Contexte rapide</p>
+          <h2>À quoi appartient cette note ?</h2>
+        </div>
+      </div>
+
+      <div class="category-grid">
+        <button type="button" class="category active" data-category="Histoire">📖<span>Histoire</span></button>
+        <button type="button" class="category" data-category="Podcast">🎙️<span>Podcast</span></button>
+        <button type="button" class="category" data-category="Prompt personnage">💬<span>Prompt perso</span></button>
+        <button type="button" class="category" data-category="Site / outil">🛠️<span>Site / outil</span></button>
+        <button type="button" class="category" data-category="Autre">✨<span>Autre</span></button>
+      </div>
+
+      <div id="dynamicFields" class="fields"></div>
+    </section>
+
+    <section class="deposit-zone">
+      <button id="depositBtn" class="deposit-button" type="button">
+        <span>♫</span>
+        <span>
+          <strong>Déposer</strong>
+          <small>dans Pépinière</small>
+        </span>
+      </button>
+
+      <div id="pendingBox" class="pending-box hidden">
+        <strong>Une note attend encore sa confirmation.</strong>
+        <span id="pendingText"></span>
+        <button id="retryBtn" class="text-button" type="button">Réessayer la vérification</button>
+      </div>
+
+      <p id="saveStatus" class="save-status" role="status"></p>
+    </section>
+
+    <footer>
+      <span>Sonate · Eternal Sonata</span>
+      <span id="connectionDot" class="connection">● prêt</span>
+    </footer>
+  </main>
+
+  <iframe id="depositFrame" name="depositFrame" class="deposit-frame" title="Dépôt Pépinière"></iframe>
+
+  <dialog id="successDialog">
+    <div class="success-icon">🌾</div>
+    <h2>Note déposée.</h2>
+    <p>Elle est bien arrivée dans Pépinière. Cette fois, Sonate l’a vérifié.</p>
+    <p id="successId" class="success-id"></p>
+    <button id="newNoteBtn" class="deposit-button small" type="button">Nouvelle note</button>
+  </dialog>
+
+  <script src="config.js?v=2.1"></script>
+  <script src="app.js?v=2.1"></script>
+</body>
+</html>
