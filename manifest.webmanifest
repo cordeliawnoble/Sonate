@@ -1,0 +1,8 @@
+{
+  "name": "Sonate — Eternal Sonata",
+  "short_name": "Sonate",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f0f5",
+  "theme_color": "#433a58"
+}
