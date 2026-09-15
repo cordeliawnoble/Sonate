@@ -10,3 +10,17 @@ window.SONATE_DB = {
     toolTypes: ["Fonctionnalité","Design / UX","Automatisation","Contenu","Bug / amélioration","Concept","Autre"]
   }
 };
+window.SONATE_DB.storageBucket = "sonate-media";
+window.SONATE_DB.image = {
+  maxDimension: 1600,
+  quality: 0.84,
+  maxFiles: 8
+};
+window.SONATE_DB.lists.communicationTypes = [
+  "Inspiration visuelle","Idée de contenu","Post","Story","Reel",
+  "Carrousel","Direction artistique","Mise en page","Campagne","Autre"
+];
+window.SONATE_DB.lists.communicationDestinations = [
+  "Instagram","TikTok","Site","Discord","Newsletter","Multi-support","À déterminer"
+];
+
