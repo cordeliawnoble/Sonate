@@ -39,7 +39,18 @@
         <small id="micHelp">La dictée apparaîtra ici en direct.</small>
       </div>
     </div>
+<div class="capture-actions-media">
+  <button id="imageBtn" class="capture-btn" type="button">🖼️ Ajouter des images</button>
+  <input id="imageInput" type="file" accept="image/*" multiple hidden>
+</div>
 
+<div id="mediaPanel" class="sonate-media-panel" hidden>
+  <div class="sonate-media-head">
+    <strong id="mediaCount">0 image</strong>
+    <span id="mediaSavings"></span>
+  </div>
+  <div id="mediaGrid" class="sonate-media-grid"></div>
+</div>
     <textarea id="note" placeholder="Dicte ou écris ton idée ici…"></textarea>
     <div id="interim" class="interim"></div>
 
@@ -59,6 +70,8 @@
       <button class="category" data-cat="Prompt personnage" type="button">💬<span>Prompt perso</span></button>
       <button class="category" data-cat="Site / outil" type="button">🛠️<span>Site / outil</span></button>
       <button class="category" data-cat="Autre" type="button">✨<span>Autre</span></button>
+      <button class="category" data-cat="Communication" type="button">📣<span>Communication</span></button>
+-->
     </div>
 
     <div id="fields" class="fields"></div>
@@ -79,5 +92,6 @@
 
 <script src="config.js"></script>
 <script src="app.js"></script>
+  <script src="media.js"></script>
 </body>
 </html>
