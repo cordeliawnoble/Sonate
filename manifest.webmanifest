@@ -1,8 +1,18 @@
 {
   "name": "Sonate — Eternal Sonata",
   "short_name": "Sonate",
+  "id": "./",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#f3f0f5",
-  "theme_color": "#433a58"
+  "background_color": "#e8effd",
+  "theme_color": "#8aa5d8",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
